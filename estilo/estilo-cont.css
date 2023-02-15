@@ -1,0 +1,862 @@
+					/******************************/
+					/*----------BODY-------------*/
+					/*****************************/
+
+	  a:visited {text-decoration: none}
+	body{
+		font-size:1.2em; 
+		width: 960px;
+		margin: 0px auto;
+		cursor: pointer;
+        background-color:#FFFFFF;
+	}
+
+
+	#ui-datepicker-div{
+		font-size: 12px !important;
+		position: absolute;
+		z-index: auto;
+		background: #ffffff !important;
+	}
+	#imagen{border:none;}
+	input{
+		border-radius:5px;
+		padding:2px;
+		border: 2px solid #dadada;
+		color: #595959;
+	}
+	textarea{
+		border-radius:5px;
+		padding:2px;
+		border: 2px solid #dadada;
+		color: #595959;
+	}
+	select{
+		border-radius:5px;
+		padding:2px;
+		border: 2px solid #595959;
+		color: #595959;
+	}
+	#accordion h3{
+		background-image: -moz-linear-gradient(#C5D19B, #7EA111);
+		background: -moz-linear-gradient(#C5D19B, #7EA111);
+		background: -ms-linear-gradient(#C5D19B, #7EA111);
+		background: -o-linear-gradient(#C5D19B, #7EA111);
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#C5D19B), to(#7EA111));
+		background: -webkit-linear-gradient(#C5D19B, #7EA111);
+		background: linear-gradient(#C5D19B, #7EA111);
+		border:1px solid #7EA111;
+	}
+
+				/***********************************/
+				/*-------------LOGIN---------------*/
+				/**********************************/
+
+		#nameSistema{
+			width: 960px;
+			margin: 0px auto;
+			font-size: 44px;
+			color: #04B404 !important;
+			text-align: center;
+			padding: 30px 0px 30px 0px;
+			text-shadow:2px 2px 2px #FFFFFF !important;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		#conten_log{
+			background: url("../images/login/fondo_log2.png");
+			width: 960px;
+			height: 620px;
+			margin: 0px auto;
+			/*margin: 30px auto 30px;*/
+			border-radius: 16px;
+		}
+		#xmsj{ font-family: Arial, Helvetica, sans-serif; margin-top: 10px; border-left: 6px solid #595959; padding:5px; background: #fff; color:#333; font-size: 14px; font-weight: bold; border-bottom:1px solid #dadada; border-top:1px solid #dadada;}
+		#xxmsj{ font-family: Arial, Helvetica, sans-serif; margin-top: 10px; border-left: 6px solid #595959; padding:5px; font-size: 15px; font-weight: bold; }
+
+		/**FIN**/
+					/*******************************/
+					/*------FORMULARIO LOGIN-------*/
+					/******************************/
+
+					.form_login form{
+						background:#fff;
+						border:1px solid #ddd;
+						margin:0 auto;
+						width:350px;
+						font-family: Arial,Helvetica,sans-serif;
+						font-size:16px;
+						-moz-box-shadow:1px 1px 7px #ccc;
+						-webkit-box-shadow:1px 1px 7px #ccc;
+						box-shadow:1px 1px 7px #ccc;
+					}
+					.form_login h3{
+						padding:10px 15px 10px 15px;
+						font-family: Arial,Helvetica,sans-serif;
+						font-weight: normal;
+						background: #609600;
+						background-image: -moz-linear-gradient(#609600, #456412);
+						background: -moz-linear-gradient(#609600, #456412);
+						background: -ms-linear-gradient(#609600, #456412);
+						background: -o-linear-gradient(#609600, #456412);
+						background: -webkit-gradient(linear, 0 0, 0 100%, from(#609600), to(#456412));
+						background: -webkit-linear-gradient(#609600, #456412);
+						background: linear-gradient(#609600, #456412);
+						color:#fff;
+						text-shadow: -1px -1px 3px #333;
+						font-size:20px;
+						border-bottom:1px solid #ddd;
+					}
+					/*.form_login form{
+						display:none;
+						background-image: url("../images/login/fondo.png");
+						background-size: 285px 340px;
+						background-repeat: no-repeat;
+					}*/
+					.clear{
+						clear:both;
+					}
+					.remember {
+						border-bottom: 1px solid #fff;
+					}
+					form.active{
+						display:block;
+					}
+
+					.form_login label{
+						display:block;
+						padding:10px 30px 0px 30px;
+						margin:10px 0px 0px 0px;
+						font-weight: bold;
+						color: #595959;
+					}
+					.form_login input[type="text"],
+					.form_login input[type="password"]{
+						border: solid 1px #E5E5E5;
+						background: #FFFFFF;
+						margin: 5px 30px 0px 30px;
+						padding: 9px;
+						display:block;
+						font-size:16px;
+						width:76%;
+						background:
+						-webkit-gradient(
+								linear,
+								left top,
+								left 25,
+								from(#FFFFFF),
+								color-stop(4%, #EEEEEE),
+								to(#FFFFFF)
+						);
+						background:
+						-moz-linear-gradient(
+								top,
+								#FFFFFF,
+								#EEEEEE 1px,
+								#FFFFFF 25px
+						);
+						-moz-box-shadow: 0px 0px 8px #f0f0f0;
+						-webkit-box-shadow: 0px 0px 8px #f0f0f0;
+						box-shadow: 0px 0px 8px #f0f0f0;
+					}
+					.form_login input[type="text"]:focus,
+					.form_login input[type="password"]:focus{
+						background:#444;
+						color:#ffffff;
+					}
+
+					.form_login .bottom{
+						background-color:#dadada;
+						border-top:4px solid #609600;
+						margin-top:10px;
+						clear:both;
+						color:#fff;
+						text-shadow:1px 1px 1px #000;
+					}
+					.form_login span.error{
+						visibility:hidden;
+						font-size:11px;
+						font-style:italic;
+						display:block;
+						margin:4px 30px;
+					}
+					.form_login a[type="submit"] {
+						background: #e3e3e3;
+						border: 1px solid #ccc;
+						color: #000;
+						font-family: Arial, Helvetica, sans-serif;
+						font-size: 14px;
+						font-weight: bold;
+						padding: 8px 0 9px;
+						text-align: center;
+						width: 200px;
+						cursor:pointer;
+						/*float:left;*/
+						margin:15px 20px 10px 10px;
+						text-shadow: 0px 1px 0px #fff;
+						-moz-border-radius: 4px;
+						-webkit-border-radius: 4px;
+						border-radius: 4px;
+						-moz-box-shadow: 0px 0px 2px #fff inset;
+						-webkit-box-shadow: 0px 0px 2px #fff inset;
+						box-shadow: 0px 0px 2px #fff inset;
+						-webkit-transition: all 0.3s ease-out;
+						-moz-transition: all 0.3s ease-out;
+						-ms-transition: all 0.3s ease-out;
+						-o-transition: all 0.3s ease-out;
+						transition: all 0.3s ease-out;
+					}
+					.form_login a[type="submit"]:hover {
+						background: #444;
+						-moz-box-shadow: 0px 0px 2px #eaeaea inset;
+						-webkit-box-shadow: 0px 0px 2px #eaeaea inset;
+						box-shadow: 0px 0px 2px #eaeaea inset;
+						color: #fff;
+						/*text-shadow: none;*/
+					}
+		/**FIN**/
+
+					/***********************************************************/
+					/*-------------OPCIONES COMPLEMENTO CALENDAR---------------*/
+					/***********************************************************/
+		#nombreC {
+			width:190px;
+
+		}
+		#apellidoC {
+			width:336px;
+
+		}
+		#cedulaC {
+			width:120px;
+
+		}
+		#pasaporteC {
+			width:120px;
+
+		}
+		#edocivilC {
+			width:140px;
+
+		}
+		#ocupaC,#tlfC,#idparro,#otrovehi{
+			width:185px;
+
+		}
+		#direcc {
+			width:335px;
+
+		}
+		#x  {
+			width:30px;
+
+		}
+		#otrovehi  {
+			width:150px;
+
+		}
+
+			/*********************************/
+			/*-------USUARIOS LOGEADOS-------*/
+			/*********************************/
+	#icon_logo{
+		background: #ffffff;
+		padding: 5px;
+		border-radius: 50%;
+		position: absolute;
+		/*top: 185px;*/
+		left: 680px;
+	}
+	#banner2{
+		position:relative;
+		z-index:200;
+		background: #fff;
+
+	}
+	#referenciaUsuario {
+			/*width: 800px;*/
+			z-index:200;
+			position: relative;
+			top:-5px;
+			left: -5px;
+			/*font-family: Times New Roman;*/
+			font-family:Arial,Helvetica,sans-serif;
+			font-size: 13px;
+			font-weight: bold;
+	}
+	#nameUser{color:#595959; border-right: 1px solid #dadada; top:190px;/*padding-right: 5px;*/}
+	#nameTip{color: #000; font-family:Arial,Helvetica,sans-serif; font-size: 14px;}
+	#referenciaUsuario {
+			opacity: 0.7;
+			-moz-opacity: 0.7;
+			filter:alpha(opacity=70);
+	}
+	#contenidoTotal{
+	 position:relative;
+	 top: -90px;
+
+	}
+	#banner2 {
+			width: 900px;
+			position: relative;
+			top:-55px;
+			height: 70px;
+	}
+
+
+/*Fin*/
+
+					/**---------------------------**/
+					/**------MENU PRINCIPAL------**/
+					/**--------------------------**/
+	.titulo_m a{color: #ffffff !important;}
+	.list_menu a{color: #595959 !important;}
+	.list_menu a:hover{color: #ffffff !important;}
+	div #menu{
+		position: relative;
+		top:-20px;
+	}
+	ul#menu {
+		background: #609600;
+		background-image: -moz-linear-gradient(#609600, #456412);
+		background: -moz-linear-gradient(#609600, #456412);
+		background: -ms-linear-gradient(#609600, #456412);
+		background: -o-linear-gradient(#609600, #456412);
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#609600), to(#456412));
+		background: -webkit-linear-gradient(#609600, #456412);
+		background: linear-gradient(#609600, #456412);
+		margin: 0;
+		border: 0 none;
+		padding: 0px;
+		width:960px;
+		list-style: none;
+		height: 24px;
+		border-top:2px solid #eee;
+		z-index: 100;
+		position: relative;
+		margin:0px auto;
+	}
+	.titulo_m  a:hover{
+		font-size: 16px;
+		opacity: 0.9;
+		-moz-opacity: 0.9;
+		filter:alpha(opacity=90);
+
+	}
+
+	ul#menu li {
+		margin: 0;
+		border: 0 none;
+		padding: 0;
+		float: left;
+		display: inline;
+		list-style: none;
+		position: relative;
+		-webkit-transition: all 0.3s ease-out;
+		-moz-transition: all 0.3s ease-out;
+		-ms-transition: all 0.3s ease-out;
+		-o-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out;
+		font-family: Arial,Helvetica,sans-serif;
+		font-size: 14px;
+	}
+
+	ul#menu li:hover{
+		opacity: 0.9;
+		-moz-opacity: 0.9;
+		filter:alpha(opacity=90);
+		background: #9BC000;
+		color:#595959 !important;
+	}
+
+				/**------------------------------------**/
+				/*-----CONTENIDO OPCIONES DEL MENU------*/
+				/**------------------------------------**/
+	ul#menu  ul {
+		margin: 0;
+		border: 0 none;
+		padding: 0;
+		width: 200px;
+		height: auto;
+		list-style: none;
+		display: none;
+		position: absolute;
+		top: 21px;
+		background: #E4EFEB;
+		border: none;
+	}
+
+	ul#menu ul:after{
+		clear: both;
+		display: block;
+		font: 1px/0px serif;
+		content: ".";
+		height: 0;
+		visibility: hidden;
+	}
+
+	ul#menu ul li {
+		width: 200px;
+		float: left;
+		display: block !important;
+		display: inline;
+	}
+	.titulo_m {
+		color:#ffffff;
+
+	}
+	.list_menu a{
+		color: #456412;
+	}
+
+	ul#menu a {
+		padding: 2px 12px 3px;
+		float: none !important;
+		float: left;
+		display: block;
+		text-decoration: none;
+		font-family: Arial,Helvetica,sans-serif;
+		font-size: 14px;
+		border-left:1px solid #eee;
+		text-decoration: none;
+		height: auto !important;
+		height: 1%; /*For IE*/
+	}
+
+	ul#menu li:hover li a,
+	ul#menu li.iehover li a {
+		float: none;
+		border:none;
+	}
+
+	ul#menu li:hover li a:hover,
+	ul#menu li:hover li:hover a,
+	ul#menu li.iehover li a:hover,
+	ul#menu li.iehover li.iehover a {
+		top: 10px;
+		background:#313131;
+		color: #ffffff;
+		font-family: Arial,Helvetica,sans-serif;
+	}
+
+
+	ul#menu ul ul,
+	ul#menu ul ul ul {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 160px;
+	}
+
+	ul#menu li:hover ul ul,
+	ul#menu li:hover ul ul ul,
+	ul#menu li.iehover ul ul,
+	ul#menu li.iehover ul ul ul {
+		display: none;
+	}
+
+	ul#menu li:hover ul,
+	ul#menu ul li:hover ul,
+	ul#menu ul ul li:hover ul,
+	ul#menu li.iehover ul,
+	ul#menu ul li.iehover ul,
+	ul#menu ul ul li.iehover ul {
+		display: block;
+	}
+	ul#menu .selected{
+		color:#595959;
+	}
+	*,
+	*:after,
+	*:before {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 0;
+		margin: 0;
+	}
+	.clearfix{padding-top: 20px;}
+
+	.clearfix:hover {
+		cursor:pointer;
+	}
+
+	/*Fin*/
+
+						/***********************************/
+						/*---ADMINISTRADOR DE CONSULTAS----*/
+						/***********************************/
+
+/*Texto de reservacion*/
+#msj_reservar {
+	background-image: -moz-linear-gradient(#C5D19B, #7EA111);
+	background: -moz-linear-gradient(#C5D19B, #7EA111);
+	background: -ms-linear-gradient(#C5D19B, #7EA111);
+	background: -o-linear-gradient(#C5D19B, #7EA111);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#C5D19B), to(#7EA111));
+	background: -webkit-linear-gradient(#C5D19B, #7EA111);
+	background: linear-gradient(#C5D19B, #7EA111);
+	position: relative; 
+	top: -290px; 
+	height: 30px; 
+	color: #fff; 
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: 14px;
+
+}
+.especialidad span{
+	align:justify;
+
+}
+
+        /***********************************************/
+        /*------MODULOS DE CONSULTAS y REGISTRO--------*/
+        /***********************************************/
+        .text_modulos{
+			font-size: 16px;
+			font-family:Arial,Helvetica,sans-serif;
+			color:#68696A;
+			font-weight: normal;
+		}
+		#nombre_modulos{
+			border: 1px solid #dadada;
+			border-right: 1px solid #fff;
+			border-left: 1px solid #fff;
+			padding-top: 5px;
+			background: #fff;
+			left: 10px;
+			font-weight: normal;
+		}
+
+		/**Fin**/
+					/***************************************************/
+					/****-----DIALOGOS MODULO DE RESERVACIONES0-----***/
+					/***************************************************/
+		#bbit-cal-buddle{
+			position: absolute !important;
+			z-index: 1000 !important;
+			-webkit-box-shadow: -1px 0px 15px 0px rgba(0,0,0,0.75);
+			-moz-box-shadow: -1px 0px 15px 0px rgba(0,0,0,0.75);
+			box-shadow: -1px 0px 15px 0px rgba(0,0,0,0.75);
+			border-radius: 30px !important;
+		}
+		.bubble-top{
+			border: 1px solid #ffffff !important;
+		}
+		.bubble-bottom{
+			border: 1px solid #ffffff !important;
+		}
+
+		#bbit-cal-editLink{
+			color: #595959;
+			font-weight: bold;
+		}
+		.cb-root{
+			background: #EDF1D5 !important;
+			border: 6px solid #9ED9AD;
+			padding: 10px;
+			border-radius: 20px !important;
+		}
+		.bubble-table td{
+			/*border: 2px solid  #609600 !important;*/
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 14px;
+			color: #4F770B;
+			/*background: #EDF1D5;*/
+		}
+
+					/***************************************************/
+					/****-----FORMULARIOS DE REGISTRO Y CONSULTA-----***/
+					/***************************************************/
+
+		/***----MODULO DE RESERVACIONES----***/
+		#titulForm{
+			border-bottom: 1px solid #dadada;
+			margin-bottom: 10px;
+			font-size: 16px;
+		}
+		#ajustarx  {
+			left: 20px;
+			width:938px;
+			position: relative;
+			font-size: 14px;
+			font-family: Arial, Helvetica, sans-serif;
+			color: #595959;
+		}
+		#ajustarxx {
+			left: -25px;
+			position: relative;
+			font-size: 14px;
+			font-family: Arial, Helvetica, sans-serif;
+			color: #595959;
+			top: -25px;
+			/*width:440px !important; 
+			max-width: 550px !important;*/
+		}
+
+		#backgx  {
+			left: 40px;
+			width:900px;
+			height: 40px;
+			font-size:24px;
+			font-family:Arial,Helvetica,sans-serif;
+			color: #FFFFFF;
+			top: -125px;
+			background: #609600;
+		}
+		.no-boxshadow .form-1 .log-twitter:hover {
+			background: #2a8ac4;
+		}
+
+		.form-1 p:last-of-type {
+			clear: both;
+		}
+
+		.form-1 .opt {
+			text-align: right;
+			margin-right: 3px;
+		}
+
+		.form-1 label[for=showPassword] {
+			display: inline-block;
+			margin-bottom: 10px;
+			font-size: 11px;
+			font-weight: 400;
+			text-transform: capitalize;
+		}
+		.form-1 input[type=checkbox] {
+			vertical-align: middle;
+			margin: -1px 5px 0 1px;
+		}
+		.infocontainer{background-image: url("../images/modulos/fondo1.png") !important;}
+		.cHead{border:1px solid #595959 !important;}
+		.ctoolbar{background: #595959 !important; border:1px solid #595959 !important;}
+		#caltoolbar div{ border: none !important;}
+		.bbit-window-header{
+			background: #609600;
+			background-image: -moz-linear-gradient(#dadada, #AAA89E);
+			background: -moz-linear-gradient(#dadada, #AAA89E);
+			background: -ms-linear-gradient(#dadada, #AAA89E);
+			background: -o-linear-gradient(#dadada, #AAA89E);
+			background: -webkit-gradient(linear, 0 0, 0 100%, from(#dadada), to(#AAA89E));
+			background: -webkit-linear-gradient(#dadada, #AAA89E);
+			background: linear-gradient(#dadada, #AAA89E);}
+		#faddbtn,#showtodaybtn,#showdaybtn,#showweekbtn,#showmonthbtn,#showreflashbtn div{ border: 1px solid #dadada; border-radius: 5px; color:#ffffff; text-shadow: 1px 1px 1px #333;}
+		#faddbtn div:hover{ border: 2px solid #dadada; !important; border-radius: 5px; color:#4B742C; text-shadow: none;}
+		#showtodaybtn div:hover{ border: 2px solid #dadada !important; border-radius: 5px; color:#4B742C; text-shadow: none;}
+		#showdaybtn div:hover{ border: 2px solid #dadada !important; border-radius: 5px; color:#4B742C; text-shadow: none;}
+		#showweekbtn div:hover{ border: 2px solid #dadada !important; border-radius: 5px; color:#4B742C; text-shadow: none;}
+		#showmonthbtn div:hover{ border: 2px solid #dadada !important; border-radius: 5px; color:#4B742C; text-shadow: none;}
+		#showreflashbtn div:hover{ border: 2px solid #dadada !important; border-radius: 5px; color:#4B742C; text-shadow: none;}
+		#txtdatetimeshow{font-weight: bold;}
+		#txtdatetimeshow:hover{background: #f2f2f2;}
+		.title_td{ position: relative; top: -20px;}
+		#border_regBottom{padding-top: 10px; padding-bottom: 20px; width:750px; border-top: 1px solid #dadada; padding-left: 240px;}
+		/*Fin**/
+
+		/***----MODULO DE HOSPEDAJE----***/
+		#titulForm_2{
+			border-bottom: 2px solid #B2CE4C;
+			margin-bottom: 10px;
+			font-size: 16px;
+		}
+		.td_background{
+			background-image: -moz-linear-gradient(#C5D19B, #7EA111);
+			background: -moz-linear-gradient(#C5D19B, #7EA111);
+			background: -ms-linear-gradient(#C5D19B, #7EA111);
+			background: -o-linear-gradient(#C5D19B, #7EA111);
+			background: -webkit-gradient(linear, 0 0, 0 100%, from(#C5D19B), to(#7EA111));
+			background: -webkit-linear-gradient(#C5D19B, #7EA111);
+			background: linear-gradient(#C5D19B, #7EA111);
+			border:1px solid #7EA111;
+			color: #333333;
+			font-size: 13px !important;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		#tablelateral,#tableconsumos td {
+			border:1px solid #A3BA59;
+		}
+		
+		.td_backgro{
+			background-image: -moz-linear-gradient(#C5D19B, #7EA111);
+			background: -moz-linear-gradient(#C5D19B, #7EA111);
+			background: -ms-linear-gradient(#C5D19B, #7EA111);
+			background: -o-linear-gradient(#C5D19B, #7EA111);
+			background: -webkit-gradient(linear, 0 0, 0 100%, from(#C5D19B), to(#7EA111));
+			background: -webkit-linear-gradient(#C5D19B, #7EA111);
+			background: linear-gradient(#C5D19B, #7EA111);
+			border:1px solid #7EA111;
+			color: black;
+			font-size: 15px !important;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		.titul_tab{
+			font-size: 12px !important;
+
+		}
+		.tab_fichaH,.tab_hospedaje,.tab_consumos,.tab_cuenta,.tab_pagos,.tab_cambiar{
+			color: #595959 !important;
+			text-shadow: none !important;
+		}
+		#form_h{
+			background-color:#FFFFFF;font-size:14px;font-family:Arial,Helvetica,sans-serif;color:#34495E; 
+		}
+		#border_bottom{
+			left:-5px; width:760px; border-top: 1px solid #dadada; padding-top: 10px; padding-bottom: 20px;
+			
+		}
+		/*****----MODULO DE CONFIGURACIÓN----****/
+		#accordion a{
+			color:#ffffff !important;
+			text-shadow: 1px 1px 4px #000;
+		}
+		#enlaces{
+			background: #edf1d5 !important;
+		}
+		#enlaces a{
+			font-size: 12px;
+			color:#4B6E0E !important;
+			text-shadow: none !important;
+		}
+		#enlaces li:hover{
+			border-bottom: 2px solid #609600;
+		}
+
+		#tab11{
+			font-size: 18px;
+			font-family:Arial,Helvetica,sans-serif;
+			border: 1px solid #ACBECF;
+		}
+		#enlaces i:active  {color:#C98B38;}
+		#enlaces{
+			border: 1px solid #D5F0B5;
+		}
+		#ajustarx2  {
+			left: 20px;
+			width:750px;
+			position: relative;
+			font-size: 14px;
+			font-family: Arial, Helvetica, sans-serif;
+			color: #595959;
+		}
+		#ajustarMR {
+			right: 120px;
+			width:850px !important;
+			position: relative;
+			font-size: 14px;
+			font-family: Arial, Helvetica, sans-serif;
+			color: #595959;
+			background: #ffffff !important;
+		}
+		.formoid-solid-green{
+			background-image: url("../images/modulos/fondo1.png") !important;
+		}
+		.title1{margin-left: 40px;}
+		.title1 span{margin-right: 10px;}
+		#border_regBottom{padding-top: 10px; padding-bottom: 20px; width:750px; border-top: 1px solid #dadada; padding-left: 240px;}
+		#border_regBottom2{padding-top: 10px; padding-bottom: 20px; width:690px; border-top: 1px solid #dadada; padding-left: 200px;}
+
+					/*********************************************/
+					/****------BOTONES ACCIONES-------************/
+					/*********************************************/
+	select{ font-size: 14px; font-family:Arial,Helvetica,sans-serif; color:#333333; border: none}
+	#mostrar{
+		background: #609600;
+		background-image: -moz-linear-gradient(#609600, #456412);
+		background: -moz-linear-gradient(#609600, #456412);
+		background: -ms-linear-gradient(#609600, #456412);
+		background: -o-linear-gradient(#609600, #456412);
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#609600), to(#456412));
+		background: -webkit-linear-gradient(#609600, #456412);
+		background: linear-gradient(#609600, #456412);
+		border: 1px solid #456412;
+		color: #ffffff;
+		text-shadow: 0 1px rgba(255,255,255,0.3);
+	}
+	#RegistrarxM,#Desincorpo,#limpiarREP,#imprimirREP,#EliminarSH,#FinaCarga,#cargarx,#ImprimirPre,#ModiPre,#BuscarPre,#LimpiarPre,#RegistrarPre,#mostrarr,#limpiarr,#Limpiarx,#Registrarx,#Modificarx,#Eliminarx,#Clientesx,#Acompx,#Evaluar,#Evaluacionx,#Buscarx,.ui-button-text,#LimpiarCH,#ModificarCH,#LimpiarSH,#RegistrarSH,#ModificarSH {
+		/*border: 1px solid #333333;
+		background: -moz-linear-gradient(#595959, #333333);
+		background: -ms-linear-gradient(#595959, #333333);
+		background: -o-linear-gradient(#595959, #333333);
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#595959), to(#333333));
+		background: -webkit-linear-gradient(#595959, #333333);
+		background: linear-gradient(#595959, #333333);
+		color: #ffffff;
+		text-shadow:1px 1px 2px #000000;
+		padding: 10px;*/
+		
+		background-image: -moz-linear-gradient(#C5D19B, #456412);
+		background: -moz-linear-gradient(#C5D19B, #456412);
+		background: -ms-linear-gradient(#C5D19B, #456412);
+		background: -o-linear-gradient(#C5D19B, #456412);
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#C5D19B), to(#456412));
+		background: -webkit-linear-gradient(#C5D19B, #456412);
+		background: linear-gradient(#C5D19B, #456412);
+		border:1px solid #456412;
+		color: #ffffff;
+		text-shadow:1px 1px 2px #000000;
+		padding: 10px;
+	
+		font-size: 14px !important;
+		font-family: Arial, Helvetica, sans-serif;
+	}/*456412*/
+	
+	#RegistrarxM:hover,#Desincorpo:hover,#limpiarREP:hover,#imprimirREP:hover,#EliminarSH:hover,#FinaCarga:hover,#ImprimirPre:hover,#ModiPre:hover,#BuscarPre:hover,#RegistrarPre:hover,#Registrarx:hover,#RegistrarSH:hover{
+		box-shadow: inset 0 1px rgba(255, 255, 255,0.2), inset 0 20px 40px rgba(255, 255, 255,0.2);
+		-webkit-transition: all 0.3s ease-out;  -moz-transition: all 0.3s ease-out;  -ms-transition: all 0.3s ease-out;  -o-transition: all 0.3s ease-out;  transition: all 0.3s ease-out;
+	}
+	#LimpiarPre:hover,#Limpiarx:hover,#LimpiarCH:hover,#LimpiarSH:hover{
+		box-shadow: inset 0 1px rgba(255, 255, 255,0.2), inset 0 20px 40px rgba(255, 255, 255,0.2);
+		-webkit-transition: all 0.3s ease-out;  -moz-transition: all 0.3s ease-out;  -ms-transition: all 0.3s ease-out;  -o-transition: all 0.3s ease-out;  transition: all 0.3s ease-out;
+	}
+	#ImprimirPre:hover,#Modificarx:hover,#ModificarCH:hover,#ModificarSH:hover{
+		box-shadow: inset 0 1px rgba(255, 255, 255,0.2), inset 0 20px 40px rgba(255, 255, 255,0.2);
+		-webkit-transition: all 0.3s ease-out;  -moz-transition: all 0.3s ease-out;  -ms-transition: all 0.3s ease-out;  -o-transition: all 0.3s ease-out;  transition: all 0.3s ease-out;
+	}
+	#Eliminarx:hover{
+		box-shadow: inset 0 1px rgba(255, 255, 255,0.2), inset 0 20px 40px rgba(255, 255, 255,0.2);
+		-webkit-transition: all 0.3s ease-out;  -moz-transition: all 0.3s ease-out;  -ms-transition: all 0.3s ease-out;  -o-transition: all 0.3s ease-out;  transition: all 0.3s ease-out;
+	}
+	#cargarx:hover,#Clientesx:hover{
+		box-shadow: inset 0 1px rgba(255, 255, 255,0.2), inset 0 20px 40px rgba(255, 255, 255,0.2);
+		-webkit-transition: all 0.3s ease-out;  -moz-transition: all 0.3s ease-out;  -ms-transition: all 0.3s ease-out;  -o-transition: all 0.3s ease-out;  transition: all 0.3s ease-out;
+	}
+	#Buscarx:hover{
+		box-shadow: inset 0 1px rgba(255, 255, 255,0.2), inset 0 20px 40px rgba(255, 255, 255,0.2);
+		-webkit-transition: all 0.3s ease-out;  -moz-transition: all 0.3s ease-out;  -ms-transition: all 0.3s ease-out;  -o-transition: all 0.3s ease-out;  transition: all 0.3s ease-out;
+	}
+
+/*Fin*/
+
+
+/*********************************/
+/*----PIE DERECHOS RESERVADOS----*/
+/*********************************/
+#copyR{
+	padding-left: 40px;
+	padding-top: -30px;
+	font-size: 18px;
+	text-shadow: 3px 2px 3px #ffffff;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #04B404;
+	cursor: auto;
+	text-align: center;
+	width: 900px;
+}
+
+/***** FILAS DE FORMULARIO DE BUSQUEDA  *****/
+.titulosfilas{
+    padding-left: 15px;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.ui-dialog-title,.ui-dialog-buttonset{
+    padding-left: 15px;
+	font-size: 18px !important;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix{
+
+}
+/* IMAGENES DEL MENU INFERIOR DE CONSUMOS DEL RESTAURANTE */

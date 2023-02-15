@@ -1,0 +1,148 @@
+/********************
+ * FEATURE CAROUSEL *
+ ********************/
+.carousel-container {
+  position:relative;
+  width:940px;
+  height:330px;
+}
+#carousel {
+  height:auto;
+  width:auto;
+  background-color:inherit;
+  position:relative;
+  margin-bottom:0.5em;
+  font-family: Cambria,serif;;
+}
+.carousel-image {
+  border:0;
+  display:block;
+}
+.carousel-feature {
+  position:absolute;
+  top:-1000px;
+  left:-1000px;
+  cursor:pointer;
+  border:2px solid #CCC;
+}
+
+.carousel-feature, .carousel-feature img { border-radius: 20px 20px 20px 20px ;}
+
+.carousel-caption {
+  position:absolute;
+  bottom:0;
+  width:100%;  
+  height:100%;
+	/* background:transparent url(../images/bg.png) repeat-x top left;*/
+   /*background-color:white;*/
+	background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 56%, rgba(255,255,255,1) 59%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(56%,rgba(255,255,255,1)), color-stop(59%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 59%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 59%); /* Opera 11.10+ */
+	background: linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 59%); /* W3C */
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#FFFFFF', EndColorStr='white'); /* IE6+ */
+
+	border:0px solid iherit;
+	margin:0px; border-radius: 0px 0px 20px 20px ;
+}
+/*
+.carousel-caption, .prueba{
+  position:relative;
+  top:-200px;
+  width:410px;  
+  height:200px;
+  background-color:white;
+  border-radius: 0px 0px 20px 20px ;
+}
+*/
+
+.carousel-feature .carousel-caption p {
+  margin-top:130px;
+}
+
+.carousel-feature .carousel-caption h2 {
+    text-transform:uppercase;
+    font-style:normal;
+    font-weight:bold;
+    letter-spacing:1px;
+    font-size:36px;
+    color:#444;
+    text-align:left;
+    text-shadow:-1px -1px 1px #ccc;
+	margin-left:15px;
+}
+
+.carousel-feature .carousel-caption h3 {
+	text-transform:uppercase;
+    font-style:normal;
+    font-weight:bold;
+    letter-spacing:1px;
+    font-size:14px;
+    color:#444;
+    text-align:left;
+    margin-left:15px;
+    text-shadow:-1px -1px 1px #ccc; 
+}
+.carousel-descrip {
+  font-size: 12px;
+  font-style: italic;
+  color:black;
+  padding:10px 15PX;
+  text-align: justify;
+}  
+.carousel-enlace {
+	position:absolute;
+    bottom:10px;
+    right:30px;
+    font-size:12px;
+    text-decoration:none;
+    color:#888;
+	 text-decoration: blink;
+}  
+.tracker-summation-container {
+  position:absolute;
+  color:white;
+  right:48px;
+  top:380px;
+  padding:3px;
+  background-color:black;
+  display:none; /* oculte*/
+}
+.tracker-individual-container {
+  position:absolute;
+  color:white;
+  right:48px;
+  top:330px;
+  padding:0;
+  margin:0;
+  font-size:14px;
+}
+.tracker-individual-container li {
+  list-style:none;
+  display:none;  /*oculte*/
+}
+.tracker-individual-container .tracker-individual-blip {
+  margin:0 3px;
+  padding:0 3px;
+  color:white;
+  text-align:center;
+  background-color:#DDD;
+  
+}
+.tracker-individual-container .tracker-individual-blip-selected {
+  color:white;
+  font-weight:bold;
+  background-color:#000;
+}
+#carousel-left {
+  position:absolute;
+  bottom:33px;
+  left:220px;
+  cursor:pointer;
+}
+#carousel-right {
+  position:absolute;
+  bottom:33px;
+  right:220px;
+  cursor:pointer;
+}

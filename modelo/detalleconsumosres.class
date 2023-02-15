@@ -1,0 +1,349 @@
+<?php
+include_once("../compartida/funciones/funciones.class.php");
+
+class consumoshotel extends funciones {
+
+	function editar($idconsumo,$idhabcon,$fechaentrada,$fechasalida,$obserConsumo,$cantdias) {
+        if ($this->con->conectar() == true) {
+			
+			$Sqlx = "SELECT	habitaPrecioD FROM habitacion WHERE habitaIdE = '".$idhabcon."'";
+			$resultx  = mysql_query($Sqlx)  or die (mysql_error());
+			$rowx  = mysql_fetch_array ($resultx);
+			$precio = $rowx['habitaPrecioD'];
+            $monto = $precio*$cantdias;
+
+				
+			$Sql = "UPDATE consumos_hotel SET 
+							consumoshFechaEntradaF  = '".$fechaentrada."',
+							consumoshFechaSalidaF  = '".$fechasalida."',
+							consumoshCantDiasE  = '".$cantdias."',
+							consumoshPrecioD  = '".$precio."',
+							consumosMontoD  = '".$monto."',
+							consumoshEstatusE  = 'Por Cancelar',
+							consumoshObservacionC  = '".$obserConsumo."'
+			
+					WHERE consumoshIdE = '".$idconsumo."'";
+		    $result= mysql_query($Sql)  or die (mysql_error());	
+			
+			$Sqlmon = "SELECT consumoshRegistroIdE,consumoshCantDiasE,consumosMontoD FROM consumos_hotel WHERE consumoshIdE = '".$idconsumo."'";
+			$resultmon  = mysql_query($Sqlmon)  or die (mysql_error());
+			$rowmon = mysql_fetch_array ($resultmon);
+			
+			$Sqlmonx = "SELECT cuentahIdE FROM cuenta_hotel WHERE cuentahRegistroIdE   = '".$rowmon['consumoshRegistroIdE']."'";
+			$resultmonx  = mysql_query($Sqlmonx)  or die (mysql_error());
+			$rowmonx = mysql_fetch_array ($resultmonx);
+			
+			$idcuenta = (int)$rowmonx['cuentahIdE'];
+			$Sql = "UPDATE cuenta_hotel SET 
+							cuentaMontoD  = '".$rowmon['consumosMontoD']."',
+							cuentahMontoTotalD  = '".$rowmon['consumosMontoD']."'
+			
+					WHERE cuentahIdE = '".$idcuenta."'";
+		    $result= mysql_query($Sql)  or die (mysql_error());	
+			
+			$Sql = "UPDATE detallecuentahotel SET 
+							detallehCant  = '".$rowmon['consumoshCantDiasE']."'
+			
+					WHERE detallehCuentahIdE = '".$idcuenta."'";
+		    $result= mysql_query($Sql)  or die (mysql_error());	
+			
+
+			$this->con->desconectar();
+			return $result;
+			
+			//echo $Sql;
+
+        }
+    }
+	
+	function agregardetalle($idHabPrincipal,$idRegPrincipal,$fechaServiciox,$servicio,$fechaEconsumosx,$fechaSconsumosx,$cantdias,$precioConsumo,$MontoConsumo,
+							$servicioRes,$precioConsumoRes,$cantConsumoRes,$MontoConsumoRes,$estausserv,$obserserv) {
+        if ($this->con->conectar() == true) {
+		
+		    /*if($servicioRes!='SERVICIO DE RESTAURAN' and $cantdias==''){$cantdiasx = 1;}
+			else if($servicioRes=='SERVICIO DE RESTAURAN' and $cantConsumoRes==''){$cantConsumoResx = 1;}*/
+
+
+			
+			$Sql = "INSERT INTO consumos_hotel (consumoshRegistroIdE,consumoshServDescripC,consumoshHabitaIdE,
+												consumoshFechaF,consumoshCantDiasE,consumoshPrecioD,consumosMontoD,
+												consumosRestaurante,consumosCantRestaurante,consumosPrecioUnitaResta,
+												consumosTotalRestaurante,consumoshEstatusE,consumoshObservacionC) 
+					VALUES ('".$idRegPrincipal."','".$servicio."','".$idHabPrincipal."','".$fechaServiciox."','".$cantdias."','".$precioConsumo."','".$MontoConsumo."',
+								'".$servicioRes."','".$cantConsumoRes."','".$precioConsumoRes."','".$MontoConsumoRes."',
+								'".$estausserv."','".$obserserv."')";
+			$result= mysql_query($Sql)  or die (mysql_error());
+			$ultimocon = mysql_insert_id();
+				
+				
+			
+			$Sqlmon = "SELECT    consumoshServDescripC,consumoshCantDiasE,
+					             consumoshPrecioD,consumosMontoD,consumosRestaurante,
+								 consumosCantRestaurante,consumosPrecioUnitaResta,consumosTotalRestaurante,consumoshFechaF
+															 
+						FROM consumos_hotel WHERE consumoshIdE = '".$ultimocon."'";
+			$resultmon  = mysql_query($Sqlmon)  or die (mysql_error());
+			$rowmon = mysql_fetch_array ($resultmon);
+			
+			$Sqlmonf = "SELECT cuentahIdE,cuentaMontoD,cuentaMontoDescuentoD,cuentahMontoRecargaD,cuentahMontoTotalD,
+								cuentaMontoMovimiento,cuentahMontoRecargaMovimiento,cuentaMontoDescuentoMovimiento,cuentahMontoTotalMovimiento
+								FROM cuenta_hotel WHERE cuentahRegistroIdE = '".$idRegPrincipal."'";
+			$resultmonf  = mysql_query($Sqlmonf)  or die (mysql_error());
+			$rowmonf = mysql_fetch_array ($resultmonf);
+			
+			$idcuenta = (int)$rowmonf['cuentahIdE'];
+			if($rowmon['consumoshServDescripC']=='SERVICIO DE RESTAURAN'){
+				$descri = $rowmon['consumosRestaurante'];
+				$precio = $rowmon['consumosPrecioUnitaResta'];
+				$canti  = $rowmon['consumosCantRestaurante'];
+				/*$total  = $rowmon['consumosTotalRestaurante']+$rowmonf['cuentaMontoD'];
+				$totalM = $rowmon['consumosTotalRestaurante']+$rowmonf['cuentaMontoMovimiento'];*/
+				
+				$MonCuen = $rowmon['consumosTotalRestaurante']+$rowmonf['cuentaMontoD'];
+				$TotCuen = ($MonCuen+$rowmonf['cuentahMontoRecargaD'])-$rowmonf['cuentaMontoDescuentoD'];
+				
+				$MonCuenM = $rowmon['consumosTotalRestaurante']+$rowmonf['cuentaMontoMovimiento'];
+				$TotCuenM = ($MonCuenM+$rowmonf['cuentahMontoRecargaMovimiento'])-$rowmonf['cuentahMontoTotalMovimiento'];			
+			
+			}else{
+				$descri = $rowmon['consumoshServDescripC'];
+				$precio = $rowmon['consumoshPrecioD'];
+				$canti  = $rowmon['consumoshCantDiasE'];
+				/*$total  = $rowmon['consumosMontoD']+$rowmonf['cuentaMontoD'];
+				$totalM = $rowmon['consumosMontoD']+$rowmonf['cuentaMontoMovimiento'];*/
+				
+				$MonCuen = $rowmon['consumosMontoD']+$rowmonf['cuentaMontoD'];
+				$TotCuen = ($MonCuen+$rowmonf['cuentahMontoRecargaD'])-$rowmonf['cuentaMontoDescuentoD'];
+				
+				$MonCuenM = $rowmon['consumosMontoD']+$rowmonf['cuentaMontoMovimiento'];
+				$TotCuenM = ($MonCuenM+$rowmonf['cuentahMontoRecargaMovimiento'])-$rowmonf['cuentahMontoTotalMovimiento'];
+			}
+			
+			$Sql = "UPDATE cuenta_hotel SET 
+						
+						cuentaMontoD = '".$MonCuen."',
+						cuentahMontoTotalD = '".$TotCuen."',
+						cuentaMontoMovimiento = '".$MonCuenM."',
+						cuentahMontoTotalMovimiento = '".$TotCuenM."'
+			
+					WHERE cuentahIdE   = '".$idcuenta."'";
+		    $result= mysql_query($Sql)  or die (mysql_error());	
+			
+			
+			
+			$Sql = "INSERT INTO detallecuentahotel (detallehCuentahIdE,detallehGrupoE,detallehDescripC,
+								detallehPrecio,detallehCant,detalleFecha) 
+			VALUES ('".$idcuenta."','0','".$descri."','".$precio."','".$canti."','".$rowmon['consumoshFechaF']."')";
+			$result= mysql_query($Sql)  or die (mysql_error());
+			
+
+			$this->con->desconectar();
+			return $result;
+			
+
+        }
+    }
+	
+	function editardetalle($id,$servicio,$fechaEconsumosx,$fechaSconsumosx,$cantdias,$precioConsumo,$MontoConsumo,
+				           $servicioRes,$precioConsumoRes,$cantConsumoRes,$MontoConsumoRes,$estausserv,$obserserv) {
+        if ($this->con->conectar() == true) {
+			
+			
+			$Sqlmon = "SELECT    consumoshRegistroIdE,consumoshServDescripC,consumoshCantDiasE,
+					             consumoshPrecioD,consumosMontoD,consumosRestaurante,
+								 consumosCantRestaurante,consumosPrecioUnitaResta,consumosTotalRestaurante,consumoshFechaF
+															 
+						FROM consumos_hotel WHERE consumoshIdE = '".$id."'";
+			$resultmon  = mysql_query($Sqlmon)  or die (mysql_error());
+			$rowmon = mysql_fetch_array ($resultmon);
+			$idregi = (int)$rowmon['consumoshRegistroIdE'];
+
+			$Sqlmonf = "SELECT cuentahIdE,cuentaMontoD,cuentaMontoDescuentoD,cuentahMontoRecargaD,cuentahMontoTotalD,
+								cuentaMontoMovimiento,cuentahMontoRecargaMovimiento,cuentaMontoDescuentoMovimiento,cuentahMontoTotalMovimiento
+			FROM cuenta_hotel WHERE cuentahRegistroIdE = '".$idregi."'";
+			$resultmonf  = mysql_query($Sqlmonf)  or die (mysql_error());
+			$rowmonf = mysql_fetch_array ($resultmonf);
+			
+			$idcuenta = (int)$rowmonf['cuentahIdE'];
+			if($rowmon['consumoshServDescripC']=='SERVICIO DE RESTAURAN'){
+				$descri = $rowmon['consumosRestaurante'];
+				$precio = $rowmon['consumosPrecioUnitaResta'];
+				$canti  = $cantConsumoRes;
+				
+				if($MontoConsumoRes>$rowmon['consumosTotalRestaurante']){
+				    $difere = $MontoConsumoRes-$rowmon['consumosTotalRestaurante'];
+					$MonCuen = $rowmonf['cuentaMontoD']+$difere;
+					$TotCuen = ($MonCuen+$rowmonf['cuentahMontoRecargaD'])-$rowmonf['cuentaMontoDescuentoD'];
+					
+					$MonCuenM = $rowmonf['cuentaMontoMovimiento']+$difere;
+					$TotCuenM = ($MonCuenM+$rowmonf['cuentahMontoRecargaMovimiento'])-$rowmonf['cuentahMontoTotalMovimiento'];
+					
+				}else if($MontoConsumoRes<$rowmon['consumosTotalRestaurante']){
+				
+					$difere = $rowmon['consumosTotalRestaurante']-$MontoConsumoRes;
+					$MonCuen = $rowmonf['cuentaMontoD']-$difere;
+					$TotCuen = ($MonCuen+$rowmonf['cuentahMontoRecargaD'])-$rowmonf['cuentaMontoDescuentoD'];
+					
+					$MonCuenM = $rowmonf['cuentaMontoMovimiento']-$difere;
+					$TotCuenM = ($MonCuenM+$rowmonf['cuentahMontoRecargaMovimiento'])-$rowmonf['cuentahMontoTotalMovimiento'];
+				}else{
+					$MonCuen  = $rowmonf['cuentaMontoD'];
+					$MonCuenM = $rowmonf['cuentaMontoMovimiento'];
+					$TotCuen  = $rowmonf['cuentahMontoTotalD'];
+					$TotCuenM = $rowmonf['cuentahMontoTotalMovimiento'];
+				}
+				
+			
+			}else{
+				$descri = $rowmon['consumoshServDescripC'];
+				$precio = $rowmon['consumoshPrecioD'];
+				$canti  = $cantdias;
+				
+				if($MontoConsumo>$rowmon['consumosMontoD']){
+				    $difere = $MontoConsumo-$rowmon['consumosMontoD'];
+					
+					/*$total  = $rowmonf['cuentaMontoD']+$difere;
+					$totalM = $rowmonf['cuentaMontoMovimiento']+$difere;*/
+					
+					$MonCuen = $rowmonf['cuentaMontoD']+$difere;
+					$TotCuen = ($MonCuen+$rowmonf['cuentahMontoRecargaD'])-$rowmonf['cuentaMontoDescuentoD'];
+					
+					$MonCuenM = $rowmonf['cuentaMontoMovimiento']+$difere;
+					$TotCuenM = ($MonCuenM+$rowmonf['cuentahMontoRecargaMovimiento'])-$rowmonf['cuentahMontoTotalMovimiento'];
+					
+				}else if($MontoConsumo<$rowmon['consumosMontoD']){
+					$difere = $rowmon['consumosMontoD']-$MontoConsumo;
+					/*$total  = $rowmonf['cuentaMontoD']-$difere;
+					$totalM = $rowmonf['cuentaMontoMovimiento']-$difere;*/
+					
+					$MonCuen = $rowmonf['cuentaMontoD']-$difere;
+					$TotCuen = ($MonCuen+$rowmonf['cuentahMontoRecargaD'])-$rowmonf['cuentaMontoDescuentoD'];
+					
+					$MonCuenM = $rowmonf['cuentaMontoMovimiento']-$difere;
+					$TotCuenM = ($MonCuenM+$rowmonf['cuentahMontoRecargaMovimiento'])-$rowmonf['cuentahMontoTotalMovimiento'];
+				}else{
+					$MonCuen  = $rowmonf['cuentaMontoD'];
+					$MonCuenM = $rowmonf['cuentaMontoMovimiento'];
+					$TotCuen  = $rowmonf['cuentahMontoTotalD'];
+					$TotCuenM = $rowmonf['cuentahMontoTotalMovimiento'];
+				}
+			}
+			
+						
+			$Sqlx = "UPDATE cuenta_hotel SET 
+						
+						cuentaMontoD    = '".$MonCuen."',
+						cuentahMontoTotalD   = '".$TotCuen."',
+						cuentaMontoMovimiento = '".$MonCuenM."',
+						cuentahMontoTotalMovimiento = '".$TotCuenM."'
+			
+					WHERE cuentahIdE   = '".$idcuenta."'";
+					
+			//echo $Sqlx;
+		    $result= mysql_query($Sqlx)  or die (mysql_error());
+		
+			//echo $MontoConsumo.'--'.$rowmon['consumosMontoD'].'--'.$rowmon['consumoshServDescripC'];
+			$Sql = "UPDATE detallecuentahotel SET 
+							detallehCant  = '".$canti."'
+			
+					WHERE detallehCuentahIdE = '".$idcuenta."' and detallehDescripC = '".$descri."'
+				             and detalleFecha = '".$rowmon['consumoshFechaF']."'";
+		    $result= mysql_query($Sql)  or die (mysql_error());	
+			//echo $Sql.'--'.$rowmon['consumoshServDescripC'];
+			
+			$Sql = "UPDATE consumos_hotel SET 
+						consumoshServDescripC    = '".$servicio."',
+						consumoshFechaEntradaF   = '".$fechaEconsumosx."',
+						consumoshFechaSalidaF    = '".$fechaSconsumosx."',
+						consumoshCantDiasE       = '".$cantdias."',
+						consumoshPrecioD  		 = '".$precioConsumo."',
+						consumosMontoD  		 = '".$MontoConsumo."',
+						
+						consumosRestaurante      = '".$servicioRes."',
+						consumosCantRestaurante  = '".$cantConsumoRes."',
+						consumosPrecioUnitaResta = '".$precioConsumoRes."',
+						consumosTotalRestaurante = '".$MontoConsumoRes."',
+						consumoshEstatusE  		 = '".$estausserv."',
+						consumoshObservacionC  	 = '".$obserserv."'
+			
+					WHERE consumoshIdE   = '".$id."'";
+		    $result= mysql_query($Sql)  or die (mysql_error());	
+			
+
+			$this->con->desconectar();
+			return $result;
+
+        }
+    }
+	
+	function eliminar($id) {
+        if ($this->con->conectar() == true) {
+		
+		    $Sqlmon = "SELECT consumoshRegistroIdE,consumoshServDescripC,consumoshPrecioD,consumoshCantDiasE,consumosMontoD,
+							  consumosRestaurante,consumosPrecioUnitaResta,consumosCantRestaurante,consumosTotalRestaurante,
+							  consumoshFechaF
+					   FROM consumos_hotel WHERE consumoshIdE = '".$id."'";
+			$resultmon  = mysql_query($Sqlmon)  or die (mysql_error());
+			$rowmon = mysql_fetch_array ($resultmon);
+			
+			$ireg = (int)$rowmon['consumoshRegistroIdE'];
+			
+			$Sqlmonx = "SELECT cuentahIdE,cuentaMontoD,cuentaMontoDescuentoD,cuentahMontoRecargaD,cuentahMontoTotalD,
+								cuentaMontoMovimiento,cuentahMontoRecargaMovimiento,cuentaMontoDescuentoMovimiento,cuentahMontoTotalMovimiento
+								FROM cuenta_hotel WHERE cuentahRegistroIdE   = '".$ireg."'";
+			$resultmonx  = mysql_query($Sqlmonx)  or die (mysql_error());
+			$rowmonx = mysql_fetch_array ($resultmonx);
+			
+			if($rowmon['consumoshServDescripC']=='SERVICIO DE RESTAURAN'){
+				$descri = $rowmon['consumosRestaurante'];
+				$precio = $rowmon['consumosPrecioUnitaResta'];
+				$canti  = $rowmon['consumosCantRestaurante'];
+				/*$total  = $rowmonx['cuentaMontoD']-$rowmon['consumosTotalRestaurante'];
+				$totalM = $rowmonx['cuentaMontoMovimiento']-$rowmon['consumosTotalRestaurante'];*/
+				
+				$MonCuen = $rowmonx['cuentaMontoD']-$rowmon['consumosTotalRestaurante'];
+				$TotCuen = ($MonCuen+$rowmonx['cuentahMontoRecargaD'])-$rowmonx['cuentaMontoDescuentoD'];
+				
+				$MonCuenM = $rowmonx['cuentaMontoMovimiento']-$rowmon['consumosTotalRestaurante'];
+				$TotCuenM = ($MonCuenM+$rowmonx['cuentahMontoRecargaMovimiento'])-$rowmonx['cuentahMontoTotalMovimiento'];
+			
+			}else{
+				$descri = $rowmon['consumoshServDescripC'];
+				$precio = $rowmon['consumoshPrecioD'];
+				$canti  = $rowmon['consumoshCantDiasE'];
+				/*$total  = $rowmonx['cuentaMontoD']-$rowmon['consumosMontoD'];
+				$totalM = $rowmonx['cuentaMontoMovimiento']-$rowmon['consumosMontoD'];*/
+				
+				$MonCuen = $rowmonx['cuentaMontoD']-$rowmon['consumosMontoD'];
+				$TotCuen = ($MonCuen+$rowmonx['cuentahMontoRecargaD'])-$rowmonx['cuentaMontoDescuentoD'];
+				
+				$MonCuenM = $rowmonx['cuentaMontoMovimiento']-$rowmon['consumosMontoD'];
+				$TotCuenM = ($MonCuenM+$rowmonx['cuentahMontoRecargaMovimiento'])-$rowmonx['cuentahMontoTotalMovimiento'];
+			}
+			$codigocuenta = (int)$rowmonx['cuentahIdE'];
+            $Sql1 = "DELETE FROM detallecuentahotel 
+						
+					 WHERE detallehCuentahIdE = '".$codigocuenta."' and detallehDescripC = '".$descri."'
+				             and detalleFecha = '".$rowmon['consumoshFechaF']."'";
+		    $result1= mysql_query($Sql1)  or die (mysql_error());
+	
+			
+			$Sql2 = "UPDATE cuenta_hotel SET 
+						
+						cuentaMontoD  = '".$MonCuen."',
+						cuentahMontoTotalD = '".$TotCuen."',
+						cuentaMontoMovimiento = '".$MonCuenM."',
+						cuentahMontoTotalMovimiento = '".$TotCuenM."'
+			
+					WHERE cuentahIdE = '".$codigocuenta."'";
+		    $result2= mysql_query($Sql2)  or die (mysql_error());		
+			
+			$result = mysql_query("DELETE FROM consumos_hotel WHERE consumoshIdE = '" . $id . "'");
+            $this->con->desconectar();
+			
+			return $result;
+			//echo $Sql2.'--'.$rowmon['consumoshServDescripC'].'--'.$rowmonx['cuentaMontoD'].'--'.$rowmon['consumosMontoD'];
+        }
+    }
+}
+?>

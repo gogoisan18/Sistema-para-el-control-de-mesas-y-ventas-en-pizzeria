@@ -1,0 +1,191 @@
+/*
+Name: Sliding pestania Panel with jQuery 1.3.2
+Author: Jeremie Tisseau
+Author URI: http://web-kreation.com/
+Script URI: http://web-kreation.com/index.php/tutorials/nice-clean-sliding-pestania-panel-built-with-jquery/
+Date: March 26, 2009
+Version: 1.0
+
+	The CSS, XHTML and design is released under Creative Common License 3.0:
+	http://creativecommons.org/licenses/by-sa/3.0/
+
+*/ 
+
+/***** clearfix *****/
+.clear {clear: both;height: 0;line-height: 0;}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clearfix {height: 1%;}
+.clearfix {display: block;}
+
+/* sliding panel Top*/
+#toppanel {
+    position: absolute;   /*Panel will overlap  content */
+    /*position: relative;*/   /*Panel will "push" the content down */
+    top: 0;
+	left:0;
+    width:100%;
+    z-index: 999;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* sliding panel Bottom*/
+#bottompanel {
+    position: fixed;   /*Panel will overlap  content */
+    /*position: relative;*/   /*Panel will "push" the content down */
+	bottom:0px;
+    width:100%;
+    z-index: 9999;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Panel Tab/button */
+.tab {
+	height: 42px;
+	min-width:1024px;
+	position: relative;
+    top: 0;
+    z-index: 999;
+	/* background: url(../images/tab_b.png) repeat-x 0 0; */ /* Separada */
+}
+
+#toppanel .tab {background: url(../images/toptab_b.png) repeat-x 0 0;}
+#bottompanel .tab {background: url(../images/bottab_b.png) repeat-x 0 0;}
+
+.tab ul.pestania {
+	display: block;
+	position: relative;
+  	height: 42px;
+	width: auto;
+  	font-weight: bold;
+	line-height: 42px;
+	margin: 0;
+  	color: white;
+  	font-size: 12px;
+	text-align: center;
+}
+
+#toppanel .tab ul.pestania {float: right;	clear: right; }
+#bottompanel .tab ul.pestania {float: left; clear: left;}
+
+.tab ul.pestania li.left {
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+	/* background: url(../images/toptab_l.png) no-repeat left 0; */ /* Separada */
+}
+#toppanel .tab ul.pestania li.left {background: url(../images/toptab_l.png) no-repeat left 0;}
+#bottompanel .tab ul.pestania li.left {background: url(../images/bottab_l.png) no-repeat left 0;}
+
+.tab ul.pestania li.right {
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+	/* background: url(../images/toptab_r.png) no-repeat left 0; */ /* Separada */
+}
+#toppanel .tab ul.pestania li.right {background: url(../images/toptab_r.png) no-repeat left 0;}
+#bottompanel .tab ul.pestania li.right {background: url(../images/bottab_r.png) no-repeat left 0;}
+
+.tab ul.pestania li {
+ 	text-align: left;
+  	padding: 0 6px;
+	display: block;
+	float: left;
+	height: 42px;
+  	/* background: url(../images/toptab_m.png) repeat-x 0 0; */ /* Separada */
+}
+
+#toppanel .tab ul.pestania li {background: url(../images/toptab_m.png) repeat-x 0 0;}
+#bottompanel .tab ul.pestania li  {background: url(../images/bottab_m.png) repeat-x 0 0;}
+
+.tab ul.pestania li a {
+	color: 	white; /* #15ADFF */
+}
+
+.tab ul.pestania li a:hover {
+	color: white; /* #FFD700 #15ADFF*/
+}
+
+.tab .sep {color:#414141}
+
+.tab a.open, .tab a.close {
+	height: 20px;
+	line-height: 20px !important;
+	padding-left: 30px !important;
+	cursor: pointer;
+	display: block;
+	min-width:auto;
+	position: relative;
+	top: 11px;
+}
+
+.tab a.open {background: url(../images/bt_open.png) no-repeat left 0;}
+.tab a.close {background: url(../images/bt_close.png) no-repeat left 0;}
+.tab a:hover.open {background: url(../images/bt_open.png) no-repeat left -19px;}
+.tab a:hover.close {background: url(../images/bt_close.png) no-repeat left -19px;}
+
+.tab .off {color:#414141; background: url(../images/bt_close.png) no-repeat left -19px;}
+
+#panel {
+	min-width:1024px;
+	height:auto;
+	color: #ebebeb; /* #999999 */
+	background: #960E0E; /* #272727  */
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
+	display: none;
+	text-align:left;
+	padding:5px;
+}
+
+#bottompanel #panel {min-width:1100px;}
+
+
+#panel h1 {
+	font-size: 1.6em;
+	padding: 5px 0 10px;
+	margin: 0;
+	color: white;
+}
+
+#panel h2{
+	font-size: 1.2em;
+	padding: 10px 0 5px;
+	margin: 0;
+	color: white;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+}
+
+#panel p {
+	margin: 5px 0;
+	padding: 0;
+}
+
+#panel a {
+	text-decoration: none;
+	/*color:white; */
+	font-weight:bold;
+}
+
+#panel a:hover {
+	color: #FFD700; 
+}
+ 
+
+
